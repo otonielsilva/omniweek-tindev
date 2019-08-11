@@ -10,8 +10,9 @@ mongoose.connect("mongodb+srv://omnistack:oministack@omni-week-otoniel-kptbo.mon
 {useNewUrlParser: true})
 
 server.use(express.json());
+server.use(cors());
 server.use(routes);
-server.use(cors())
+
 
 
 

@@ -7,7 +7,6 @@ module.exports = {
          const { user } = req.headers;
          const { devId } = req.params;
 
-        
          const  loggedDev = await Dev.findById(user);
          const targetDev = await Dev.findById(devId);
 
@@ -24,7 +23,7 @@ module.exports = {
             loggedDev.like.splice(index, 1);
          }
 
-         if (loggedDev.dislike.includes(targetDev._id)) {
+         if (!loggedDev.dislike.includes(targetDev._id)) {
             loggedDev.dislike.push(targetDev._id);
             
          }        

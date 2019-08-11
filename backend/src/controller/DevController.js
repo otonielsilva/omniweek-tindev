@@ -7,6 +7,12 @@ module.exports = {
 
           const loggedUser = await Dev.findById(user);
 
+          if (!loggedUser) {
+              return resp.status(501).json({ message: "not allowed"});
+          }
+
+
+
           const users = await Dev.find(
                {
                     $and : [
@@ -17,7 +23,7 @@ module.exports = {
 
                }
 
-
+ 
           );
 
           return resp.json(users);
@@ -50,7 +56,10 @@ module.exports = {
           name: name,
           username: username,
           bio: bio,
-          avatar: avatar
+          avatar: avatar,
+          like: [],
+          dislike: []
+
 
        });
        return resp.json(dev);
