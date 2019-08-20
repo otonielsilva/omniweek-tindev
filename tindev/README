@@ -1,0 +1,10 @@
+Tindev
+
+Mobilie application to consume the api exposed on the local machine. http://localhost:3333/
+
+
+
+
+
+To connect to your localhost without changing the IP, run: 
+  - adb reverse tcp:3333 tcp:3333

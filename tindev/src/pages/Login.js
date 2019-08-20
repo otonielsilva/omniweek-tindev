@@ -1,5 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
  
+import AsyncStorage from '@react-native-community/async-storage'
 import { View, Text, Image, Plataform, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 
 import logo from '../assets/logo.png';
@@ -9,16 +10,24 @@ import api from '../services/api';
 export default function Login ({ navigation }) {
     const [ user, setUser] = useState('');
 
+    useEffect(() => {
+        AsyncStorage.getItem('user').then(user => {
+            navigation.navigate('Main', {user})
+        })
+    }),[] ;
+
     async function handleLogin () {
+        console.log("teste");
 
-        
-
-        const response = await  api.post("/devs", {
-            username: user
+         const response = await  api.post("/devs", {
+            username: user 
         });
+
+
+        await AsyncStorage.setItem('user', _id);
         const { _id } = response.data
 
-        console.log(_id);  
+        
 
         navigation.navigate('Main', { _id });  
     }
